@@ -33,17 +33,17 @@ ALLOWED_HOSTS = ['https://survelonseries.herokuapp.com/']
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 
-# DATABASES = { 'default' : dj_database_url.config()}
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pxclujzo',
-        'USER': 'pxclujzo',
-        'PASSWORD': 'UR5dyw68YWKj_YgBB0JqT2N9ZIs6vwFF',
-        'HOST': 'topsy.db.elephantsql.com',
-        'PORT':'5432',
-    }
-}
+DATABASES = { 'default' : dj_database_url.config()}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'pxclujzo',
+#         'USER': 'pxclujzo',
+#         'PASSWORD': 'UR5dyw68YWKj_YgBB0JqT2N9ZIs6vwFF',
+#         'HOST': 'topsy.db.elephantsql.com',
+#         'PORT':'5432',
+#     }
+# }
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
