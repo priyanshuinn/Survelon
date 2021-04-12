@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '48tq4i6*wt-b4uf)e$c8uj7)#%9k0!*s#0s)4rvhn@c797(bp8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'False'
+DEBUG = 'True'
 
 # Allow all host hosts/domain names for this site
 ALLOWED_HOSTS = ['https://survelonseries.herokuapp.com/']
@@ -33,8 +33,17 @@ ALLOWED_HOSTS = ['https://survelonseries.herokuapp.com/']
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 
-DATABASES = { 'default' : dj_database_url.config()}
-
+# DATABASES = { 'default' : dj_database_url.config()}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pxclujzo',
+        'USER': 'pxclujzo',
+        'PASSWORD': 'UR5dyw68YWKj_YgBB0JqT2N9ZIs6vwFF',
+        'HOST': 'topsy.db.elephantsql.com',
+        'PORT':'5432',
+    }
+}
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
