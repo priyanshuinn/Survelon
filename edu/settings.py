@@ -28,7 +28,7 @@ SECRET_KEY = '48tq4i6*wt-b4uf)e$c8uj7)#%9k0!*s#0s)4rvhn@c797(bp8'
 DEBUG = 'False'
 
 # Allow all host hosts/domain names for this site
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://survelonseries.herokuapp.com/']
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
