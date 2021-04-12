@@ -1,0 +1,200 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Servolon Series</title>
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- Fontawesome CSS -->
+	<link href="{% static 'css/all.css' %}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+				<img src="{% static 'images/f.png' %}" height="60px" alt="logo" />
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fas fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                     <a class="nav-link" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/about">About</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" href="/courses">Our Products</a>
+                  </li>
+
+                  <li class="nav-item">
+                     <a class="nav-link" href="/contact">Contact</a>
+				  </li>
+				                     
+				  {% if user.is_authenticated %}
+
+				  <li class="nav-item">
+					  <a class="nav-link" href="/accounts/logout">logout</a>
+				  </li>
+				  <li class="nav-link">Hello {{ user.username }}</li>
+  
+				  {% else %}
+				  <li class="nav-item">
+					  <a class="nav-link" href="/accounts/register">Register</a>
+				  </li>
+				  <li class="nav-item">
+					  <a class="nav-link" href="/accounts/login">login</a>
+				  </li>
+				  {% endif %}
+               </ul>
+            </div>
+        </div>
+    </nav>
+
+	<!-- full Title -->
+	<div class="full-title">
+		<div class="container">
+			<!-- Page Heading/Breadcrumbs -->
+			<h1 class="mt-4 mb-3">Our Products
+				<small>Subheading</small>
+			</h1>
+		</div>
+	</div>
+	
+    <!-- Page Content -->
+    <div class="container">
+		<div class="breadcrumb-main">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Home</a>
+				</li>
+				<li class="breadcrumb-item active">Our Products</li>
+			</ol>
+		</div>
+
+		<!-- Image Header -->
+		<img class="img-fluid rounded mb-4" src="{% static 'images/courses1_f.jpg' %}" alt="" />
+
+		<!-- Courses Section -->
+		<div class="services-bar">
+            <h1 class="my-4">Our Products</h1>
+                    <!-- Services Section -->
+         <div class="row">
+            <div class="col-lg-4 mb-4">
+               <div class="card h-100">
+                  <h4 class="card-header">Face Mask Detection System</h4>
+                  <div class="card-img">
+                     <img class="img-fluid" src="{% static 'images/mask.png' %}" alt="" />
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text">This is automated face mask detection solution which has got high accuracy and it stores images in the database if you are not wearing your face mask</p>
+                  </div>
+                  <div class="card-footer">
+                     <a href="{% url 'mask_page' %}" class="btn btn-primary">View Demo</a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+               <div class="card h-100">
+                  <h4 class="card-header">Vehicle Speed Detection and counting</h4>
+                  <div class="card-img">
+                     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/GblIvS0J2fw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                     <img class="img-fluid" src="{% static 'images/segmentation.gif' %}" alt="" />
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text">This solution will calculate your vehicle speed along with count and will provide interactive real time analytics on roads.</p>
+                  </div>
+                  <div class="card-footer">
+                     <a href="/overview/describe" class="btn btn-primary">View Demo</a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+               <div class="card h-100">
+                  <h4 class="card-header">Garden Supplies</h4>
+                  <div class="card-img">
+                     <img class="img-fluid" src="{% static 'images/services-img-03.jpg' %}" alt="" />
+                  </div>
+                  <div class="card-body">
+                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
+                        necessitatibus neque.</p>
+                  </div>
+                  <div class="card-footer">
+                     <a href="#" class="btn btn-primary">View Demo</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- /.row -->
+      </div>
+		
+    </div>
+    <!-- /.container -->
+
+   <!--footer starts from here-->
+   <footer class="footer">
+    <div class="container bottom_border">
+       <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6 col">
+             <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+             <!--headin5_amrc-->
+             <p class="mb10">We are available 24x7 through phone, email, and our social-media platform.</p>
+             <p><i class="fa fa-location-arrow"></i> JYOTI NAGAR AURANGABAD
+                B 5 VISHAL APARTMENT,
+                PIN - 431005 </p>
+             <p><i class="fa fa-phone"></i> +91-9850640563 </p>
+             <p><i class="fa fa fa-envelope"></i> contact@incipienttech.in</p>
+             </p>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-6">
+             <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+             <!--headin5_amrc-->
+             <ul class="footer_ul_amrc">
+     
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/courses">Our Products</a></li>
+                <li><a href="/contact">Get In Touch</a></li>
+             </ul>
+             <!--footer_ul_amrc ends here-->
+          </div>
+
+       </div>
+    </div>
+    <div class="container">
+       <div class="footer-logo">
+          <img src="{% static 'images/f.png' %}" height="60px" alt="logo" />
+       </div>
+       <!--foote_bottom_ul_amrc ends here-->
+       <p class="copyright text-center">All rights reserved Company Registered Under MCA &copy; 2020 <a
+             href="#">Incipient Technologies pvt.ltd.</a> Design By :
+          <a href="https://html.design/">Incipient Technologies</a>
+       </p>
+       <ul class="social_footer_ul">
+          <li><a href="https://www.facebook.com/insipientss/?modal=admin_todo_tour"><i
+                   class="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://mobile.twitter.com/rushike01843453"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://www.linkedin.com/company/incipient-technologies-private-limited"><i
+                   class="fab fa-linkedin"></i></a></li>
+          <li><a href="https://www.instagram.com/incipient_ss/"><i class="fab fa-instagram"></i></a></li>
+       </ul>
+       <!--social_footer_ul ends here-->
+    </div>
+ </footer>
+
+ <!-- Bootstrap core JavaScript -->
+ <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+ <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

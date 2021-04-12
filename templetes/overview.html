@@ -1,0 +1,308 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Servolon Series</title>
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- Fontawesome CSS -->
+	<link href="{% static 'css/all.css' %}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  
+    <script type="text/javascript" src="{% static 'js/smoothie.js' %}"></script>
+<!-- Script file for updating the data in Line Graph and BAR Graph-->
+<!-- <script>
+  var eventsource = new EventSource("{% url 'stream' %}")
+  eventsource.onopen = function(){
+      console.log("we have an open connection");
+  }
+  eventsource.onmessage = function(e) {
+      console.log(e.data);
+      var value = e.data.split("|")
+      document.querySelector("#app").innerText = value[0];
+  }
+  eventsource.onerror = function(e) {
+      console.log('error',e);
+  }
+</script> -->
+<script>
+    var socket = new EventSource("{% url 'stream' %}");
+    socket.onopen = function (e) {
+      /*alert("Connection established"); */
+    };
+    socket.onmessage = function (e) {
+      //var recData = JSON.parse(e.data);
+      console.log(e.data);
+      var value = e.data.split("|")
+      /* UPDATE PART FOR LINE GRAPH */
+      dataObjNew = dataObj["data"]["datasets"][0]["data"];
+      dataObjNew.shift();
+      dataObjNew.push(parseFloat(value[0].split(" ")[0]));
+      dataObj["data"]["datasets"][0]["data"] = dataObjNew;
+
+
+      dataObjNew = dataObj["data"]["labels"];
+      dataObjNew.shift();
+      dataObjNew.push(value[1]);
+      dataObj["data"]["labels"] = dataObjNew;
+      /* update for value 2*/
+      //dataObjNew = dataObj["data"]["datasets"][1]["data"];
+      //dataObjNew.shift();
+      //dataObjNew.push(recData.value2);
+      //dataObj["data"]["datasets"][1]["data"] = dataObjNew;
+      /* UPDATE PART FOR BAR GRAPH */
+      dataObjNew2 = dataObj2["data"]["datasets"][0]["data"];
+      dataObjNew2.shift();
+      dataObjNew2.push(parseFloat(value[0].split(" ")[0]));
+      dataObj2["data"]["datasets"][0]["data"] = dataObjNew2;
+
+      /*********************************************************/
+      window.myLine.update();
+      window.myBar.update();
+    };
+    socket.onclose = function (e) {
+      /*alert("Connection closed"); */
+    };
+  </script>
+
+</head>
+
+
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
+      <div class="container">
+          <a class="navbar-brand" href="/">
+         <img src="{% static 'images/f.png' %}" height="60px" alt="logo" />
+          </a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fas fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                   <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link active" href="/courses">Our Products</a>
+                </li>
+
+                <li class="nav-item">
+                   <a class="nav-link" href="/contact">Contact</a>
+                </li>
+
+                   
+                {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/logout">logout</a>
+                </li>
+                <li class="nav-link">Hello {{ user.username }}</li>
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/login">login</a>
+                </li>
+                {% endif %}
+
+
+       
+          </div>
+      </div>
+  </nav>
+
+
+
+<br><br>
+<div class="container">
+	<div class="graph">
+	  <div class="linegraph">
+		<canvas id="myChart"></canvas>
+	  </div>
+	  <div class="bargraph">
+		<canvas id="myChart2"></canvas>
+	  </div>
+	</div>
+	<div class="videoForm">
+		  <div class="image">
+			<!-- <h1>Open Camera</h2> -->
+			<img src="{% url 'real_video' %}" alt="" />
+		  </div>
+      <br><br><br><br>
+		  <u><h1>SPEED OF THE CAR</h1></u><br>
+		  <u><h3 id="app">__</h3></u>
+	  </div>
+	</div>
+
+<!-- **********************************************************************************  -->
+
+<br><br><br><br><br><br><br><br><br><br>
+    <!--footer starts from here-->
+   <footer class="footer">
+      <div class="container bottom_border">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col">
+               <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+               <!--headin5_amrc-->
+               <p class="mb10">We are available 24x7 through phone, email, and our social-media platform.</p>
+               <p><i class="fa fa-location-arrow"></i> JYOTI NAGAR AURANGABAD
+                  B 5 VISHAL APARTMENT,
+                  PIN - 431005 </p>
+               <p><i class="fa fa-phone"></i> +91-9850640563 </p>
+               <p><i class="fa fa fa-envelope"></i> contact@incipienttech.in</p>
+               </p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 col-sm-6">
+               <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+               <!--headin5_amrc-->
+               <ul class="footer_ul_amrc">
+                  
+                  <li><a href="/about">About Us</a></li>
+                  <li><a href="/courses">Our Products</a></li>
+                  <li><a href="/contact">Get In Touch</a></li>
+               </ul>
+               <!--footer_ul_amrc ends here-->
+            </div>
+            
+         </div>
+      </div>
+      <div class="container">
+          <div class="footer-logo">
+      <a href="/"><img src="{% static 'images/log.png' %}" alt="" /></a>
+    </div>
+          <!--foote_bottom_ul_amrc ends here-->
+          <p class="copyright text-center">All Rights Reserved. &copy; 2018 <a href="#">N & LW Lawn Care</a> Design By : 
+      <a href="https://html.design/">html design</a>
+          </p>
+          <ul class="social_footer_ul">
+            <li><a href="https://www.facebook.com/insipientss/?modal=admin_todo_tour"><i
+                     class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://mobile.twitter.com/rushike01843453"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/company/incipient-technologies-private-limited"><i
+                     class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/incipient_ss/"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+          <!--social_footer_ul ends here-->
+      </div>
+  </footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+<!-- Contact form JavaScript -->
+<script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+<script src="{% static 'js/contact_me.js' %}"></script>
+</body>
+<!-- Script for Line Graph -->
+<script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var dataObj = {
+      type: "line",
+      data: {
+        labels: [0,0,0,0,0,0],
+        datasets: [
+          {
+            label: "VALUE 1",
+            data: [0, 0, 0, 0, 0, 0],
+            borderColor: "#3e95cd",
+            fill: false,
+          },
+          {
+            label: "VALUE 2",
+            data: [0, 0, 0, 0, 0, 0],
+            borderColor: "#8e5ea2",
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        title: {
+          display: true,
+          text: "Real Time Line graph Data Visualisation ",
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    };
+    window.myLine = new Chart(ctx, dataObj);
+  </script>
+  <!-- Script for Bar Graph -->
+  <script>
+    var ctx2 = document.getElementById("myChart2").getContext("2d");
+    var dataObj2 = {
+      type: "bar",
+      data: {
+        labels: [1, 2, 3, 4, 5, 6],
+        datasets: [
+          {
+            backgroundColor: [
+              "#3cba9f",
+              "#3cba9f",
+              "#3cba9f",
+              "#3cba9f",
+              "#3cba9f",
+              "#3cba9f",
+            ],
+            data: [12, 19, 3, 5, 2, 3],
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "Real Time Bar graph Data Visualisation ",
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    };
+    window.myBar = new Chart(ctx2, dataObj2);
+  </script>
+  <!-- Script for printing the speed -->
+  <script>
+    var eventsource = new EventSource("{% url 'stream' %}")
+    eventsource.onopen = function(){
+        console.log("we have an open connection");
+    }
+    eventsource.onmessage = function(e) {
+        //console.log(e.data);
+        var value = e.data.split("|")
+        document.querySelector("#app").innerText = value[0];
+    }
+    eventsource.onerror = function(e) {
+        console.log('error',e);
+    }
+</script>
+</html>

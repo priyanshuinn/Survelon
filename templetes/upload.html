@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Servolon Series</title>
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- Fontawesome CSS -->
+	<link href="{% static 'css/all.css' %}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  
+    <script type="text/javascript" src="{% static 'js/smoothie.js' %}"></script>
+
+
+</head>
+
+
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+            <img src="{% static 'images/log.png' %}" alt="logo" />
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fas fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                     <a class="nav-link" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/about">About</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" href="/courses">Our Products</a>
+                  </li>
+
+                  <li class="nav-item">
+                     <a class="nav-link" href="/contact">Contact</a>
+                  </li>
+
+                     
+                  {% if user.is_authenticated %}
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="/accounts/logout">logout</a>
+                  </li>
+                  <li class="nav-link">Hello {{ user.username }}</li>
+
+                  {% else %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="/accounts/register">Register</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/accounts/login">login</a>
+                  </li>
+                  {% endif %}
+
+
+         
+            </div>
+        </div>
+    </nav>
+
+
+
+<br><br>
+<h1>Upload Form</h1>
+<br>
+<form method = "post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <input type="file" name="document" accept="video/*" required>
+    <br><br><br>
+    <button type="submit">Upload File</button>
+</form>
+
+<!-- **********************************************************************************  -->
+<br><br><br><br><br><br><br><br><br><br>
+
+    <!--footer starts from here-->
+    <footer class="footer">
+        <div class="container bottom_border">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6 col">
+					<h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+					<!--headin5_amrc-->
+					<p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+					<p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
+					<p><i class="fa fa-phone"></i> +91-9999878398 </p>
+					<p><i class="fa fa fa-envelope"></i> info@example.com </p>
+               </div>
+
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+					<!--headin5_amrc-->
+					<ul class="footer_ul_amrc">
+
+ <li><a href="/about">About Us</a></li>
+                  <li><a href="/courses">Our Products</a></li>
+                  <li><a href="/contact">Get In Touch</a></li>
+					</ul>
+					<!--footer_ul_amrc ends here-->
+				</div>
+
+			</div>
+		</div>
+        <div class="container">
+            <div class="footer-logo">
+				<a href="/"><img src="{% static 'images/lo.png' %}" alt="" /></a>
+			</div>
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="copyright text-center">All Rights Reserved. &copy; 2018 <a href="#">N & LW Lawn Care</a> Design By : 
+				<a href="https://html.design/">html design</a>
+            </p>
+         <ul class="social_footer_ul">
+            <li><a href="https://www.facebook.com/insipientss/?modal=admin_todo_tour"><i
+                     class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://mobile.twitter.com/rushike01843453"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/company/incipient-technologies-private-limited"><i
+                     class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/incipient_ss/"><i class="fab fa-instagram"></i></a></li>
+         </ul>
+            <!--social_footer_ul ends here-->
+        </div>
+    </footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Contact form JavaScript -->
+<script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+<script src="{% static 'js/contact_me.js' %}"></script>
+</body>
+</html>

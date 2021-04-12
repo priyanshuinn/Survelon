@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Servolon Series</title>
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- Fontawesome CSS -->
+	<link href="{% static 'css/all.css' %}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  
+    <script type="text/javascript" src="{% static 'js/smoothie.js' %}"></script>
+
+
+</head>
+
+
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+            <img src="{% static 'images/f.png' %}" height="60px" alt="logo" />
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fas fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                     <a class="nav-link" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/about">About</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" href="/courses">Our Products</a>
+                  </li>
+
+                  <li class="nav-item">
+                     <a class="nav-link" href="/contact">Contact</a>
+                  </li>
+
+                     
+                  {% if user.is_authenticated %}
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="/accounts/logout">logout</a>
+                  </li>
+                  <li class="nav-link">Hello {{ user.username }}</li>
+
+                  {% else %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="/accounts/register">Register</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/accounts/login">login</a>
+                  </li>
+                  {% endif %}
+
+
+         
+            </div>
+        </div>
+    </nav>
+
+
+
+<br><br><u><h1 style="text-align: center;">Mask Detection System</h1></u>
+<div style="background-color: black;">
+    <img src="{% url 'mask' %}" style="margin-left:450px;">
+</div>
+
+<!-- **********************************************************************************  -->
+<br><br><br><br><br><br><br><br><br><br>
+
+   <!--footer starts from here-->
+   <footer class="footer">
+      <div class="container bottom_border">
+         <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col">
+               <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+               <!--headin5_amrc-->
+               <p class="mb10">We are available 24x7 through phone, email, and our social-media platform.</p>
+               <p><i class="fa fa-location-arrow"></i> JYOTI NAGAR AURANGABAD
+                  B 5 VISHAL APARTMENT,
+                  PIN - 431005 </p>
+               <p><i class="fa fa-phone"></i> +91-9850640563 </p>
+               <p><i class="fa fa fa-envelope"></i> contact@incipienttech.in</p>
+               </p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+               <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+               <!--headin5_amrc-->
+               <ul class="footer_ul_amrc">
+                  <li><a href="/about">About Us</a></li>
+                  <li><a href="/courses">Our Products</a></li>
+                  <li><a href="/contact">Get In Touch</a></li>
+               </ul>
+               <!--footer_ul_amrc ends here-->
+            </div>
+
+         </div>
+      </div>
+      <div class="container">
+         <div class="footer-logo">
+            <img src="{% static 'images/f.png' %}" height="60px" alt="logo" />
+         </div>
+         <!--foote_bottom_ul_amrc ends here-->
+         <p class="copyright text-center">All rights reserved Company Registered Under MCA &copy; 2020 <a
+               href="#">Incipient Technologies pvt.ltd.</a> Design By :
+            <a href="https://html.design/">Incipient Technologies</a>
+         </p>
+         <ul class="social_footer_ul">
+            <li><a href="https://www.facebook.com/insipientss/?modal=admin_todo_tour"><i
+                     class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://mobile.twitter.com/rushike01843453"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/company/incipient-technologies-private-limited"><i
+                     class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/incipient_ss/"><i class="fab fa-instagram"></i></a></li>
+         </ul>
+         <!--social_footer_ul ends here-->
+      </div>
+   </footer>
+
+   <!-- Bootstrap core JavaScript -->
+   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>
