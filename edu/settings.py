@@ -28,7 +28,7 @@ SECRET_KEY = '48tq4i6*wt-b4uf)e$c8uj7)#%9k0!*s#0s)4rvhn@c797(bp8'
 DEBUG = 'False'
 
 # Allow all host hosts/domain names for this site
-ALLOWED_HOSTS = ['https://servolon.herokuapp.com/']
+ALLOWED_HOSTS = ['*']
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -153,18 +153,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'courseai/static')
-# ]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
